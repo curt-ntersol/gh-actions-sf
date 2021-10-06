@@ -28,3 +28,16 @@ resource "snowflake_schema" "demo_schema" {
   name     = "DEMO_SCHEMA"
   comment  = "Schema for Snowflake Terraform demo"
 }
+
+resource "snowflake_table" "table1" {
+  database            = snowflake_database.demo_db_tf.name
+  schema              = snowflake_schema.demo_schema.name
+  name                = "table1"
+  comment             = "A table."
+  
+  column {
+    name     = "id"
+    type     = "int"
+    nullable = true    
+    }
+  }
