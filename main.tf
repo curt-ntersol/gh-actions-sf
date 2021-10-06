@@ -28,3 +28,9 @@ resource "snowflake_schema" "demo_schema" {
   name     = "DEMO_SCHEMA"
   comment  = "Schema for Snowflake Terraform demo"
 }
+
+resource "snowflake_sequence" "sequence" {
+  database = snowflake_database.demo_db_tf.name
+  schema   = snowflake_schema.demo_schema.name
+  name     = "thing_counter"
+}
