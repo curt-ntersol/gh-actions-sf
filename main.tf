@@ -29,15 +29,37 @@ resource "snowflake_schema" "demo_schema" {
   comment  = "Schema for Snowflake Terraform demo"
 }
 
-resource "snowflake_table" "table1" {
-  database            = "DEMO_DB_TF"
+resource "snowflake_table" "table" {
+  database            = snowflake_database.demo_db_tf.name
   schema              = "demo_schema"
-  name                = "table1"
+  name                = "table"
   comment             = "A table."
   
   column {
     name     = "id"
     type     = "int"
-    nullable = true    
-    }
+    nullable = true
   }
+
+  column {
+    name     = "data"
+    type     = "text"
+    nullable = false
+  }
+
+  column {
+    name = "DATE"
+    type = "TIMESTAMP_NTZ(9)"
+  }
+
+  column {
+    name    = "extra"
+    type    = "VARIANT"
+    comment = "extra data"
+  }
+
+  primary_key {
+    name = "my_key"
+    keys = ["data"]
+  }
+}
