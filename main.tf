@@ -30,8 +30,8 @@ resource "snowflake_schema" "demo_schema" {
 }
 
 resource "snowflake_table" "table1" {
-  database            = snowflake_database.demo_db_tf.name
-  schema              = snowflake_schema.demo_schema.name
+  database            = "DEMO_DB_TF"
+  schema              = "demo_schema"
   name                = "table1"
   comment             = "A table."
   
